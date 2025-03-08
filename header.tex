@@ -1,0 +1,210 @@
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage{enumitem}
+\usepackage{alltt}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{booktabs}
+\usepackage{bm}
+\usepackage{bbm}
+\usepackage{caption}
+\usepackage{graphicx}
+\usepackage{mathrsfs}
+\usepackage{mathdots}
+\usepackage{mathtools}
+\usepackage{microtype}
+\usepackage{multirow}
+\usepackage{soul}
+\usepackage{empheq}
+\usepackage{mdframed}
+
+% mdframed environments remain unchanged:
+\newmdenv[
+  innerbottommargin = 4mm,
+  middlelinewidth = 0.3mm,
+  linecolor = darkgray,
+  backgroundcolor=TealBlue!10,
+  nobreak=true
+]{boxexample}
+\newenvironment{ex}{\boxexample\begin{eg}}{\end{eg}\endboxexample}
+
+\newmdenv[
+  innerbottommargin = 4mm,
+  middlelinewidth = 0.3mm,
+  linecolor = darkgray,
+  backgroundcolor=Salmon!10,
+  nobreak=true
+]{boxtheo}
+
+\newmdenv[
+  innerbottommargin = 4mm,
+  middlelinewidth = 0.3mm,
+  linecolor = darkgray,
+  backgroundcolor=Goldenrod!20,
+  nobreak=true
+]{boxdefinition}
+\newenvironment{thm}{\boxtheo\begin{theo}}{\end{theo}\endboxtheo}
+\newenvironment{boxdef}{\boxdefinition\begin{defi}}{\end{defi}\endboxtheo}
+
+\newenvironment{enum}{\newblock\begin{enumerate}[label=(\alph*)]}{\end{enumerate}}
+\newenvironment{statement}[1]{\smallskip\noindent\color{BrickRed} {\bf #1.}}{}
+\newenvironment{prob}{\color{BrickRed}\begin{probinner}}{\end{probinner}}
+\newenvironment{comments}{\color{BrickRed}\begin{commentinner}}{\end{commentinner}}
+\usepackage{imakeidx}
+\newcommand{\argmin}{\operatornamewithlimits{arg\,min}}
+\newcommand{\argmax}{\operatornamewithlimits{arg\,max}}
+
+\makeindex[intoc, title=Index]
+\usepackage[pdftex,
+  hidelinks,
+  pdfauthor={Kadin Zhang},
+  pdfsubject={},
+  pdftitle={},
+  pdfkeywords={}]{hyperref}
+\renewcommand\printindex{}
+
+% Set standard 1-inch margins using the geometry package.
+\usepackage[margin=1in]{geometry}
+
+% Theorem styles and macros:
+\newtheoremstyle{definition}{}{}{}{}{\bfseries}{:}{.5em}{\thmname{#1}\thmnumber{ #2}\thmnote{ (\textcolor{darkgray}{#3})}}
+\theoremstyle{definition}
+
+\newtheorem*{aim}{Aim}
+\newtheorem*{axiom}{Axiom}
+\newtheorem*{claim}{Claim}
+\newtheorem*{cor}{Corollary}
+\newtheorem*{conjecture}{Conjecture}
+\newtheorem*{commentinner}{Comments}
+\newtheorem*{defi}{Definition}
+\newtheorem*{eg}{Example}
+\newtheorem*{exc}{Exercise}
+\newtheorem*{fact}{Fact}
+\newtheorem*{law}{Law}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{notation}{Notation}
+\newtheorem*{prop}{Proposition}
+\newtheorem*{question}{Question}
+\newtheorem*{rrule}{Rule}
+\newtheorem*{theo}{Theorem}
+\newtheorem*{assumption}{Assumption}
+
+\newtheorem*{remark}{Remark}
+\newtheorem*{warning}{Warning}
+\newtheorem*{exercise}{Exercise}
+
+\newtheorem{nthm}{Theorem}[section]
+\newtheorem{nlemma}[nthm]{Lemma}
+\newtheorem{nprop}[nthm]{Proposition}
+\newtheorem{ncor}[nthm]{Corollary}
+\newtheorem{probinner}[nthm]{Problem}
+
+\renewcommand{\labelitemi}{--}
+\renewcommand{\labelitemii}{$\circ$}
+\renewcommand{\labelenumi}{(\roman{*})}
+
+\newcommand\qedsym{\hfill\ensuremath{\square}}
+\def\st{\bgroup \ULdepth=-.55ex \ULset}
+
+% Mathematics symbols and operator definitions:
+\newcommand{\leb}{\text{Leb}}
+
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\CP}{\mathbb{CP}}
+\newcommand{\GG}{\mathbb{G}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\RP}{\mathbb{RP}}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\Z}{\mathbb{Z}}
+\renewcommand{\H}{\mathbb{H}}
+
+\DeclarePairedDelimiter\parens{\lparen}{\rparen}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\braces{\lbrace}{\rbrace}
+\DeclarePairedDelimiter\bracks{\lbrack}{\rbrack}
+\DeclarePairedDelimiter\angles{\langle}{\rangle}
+
+\DeclarePairedDelimiter\bigp{\Big(}{\Big)}
+\DeclarePairedDelimiter\bigc{\Bigg\{}{\Bigg\}}
+\DeclarePairedDelimiter\biga{\Bigg|}{\Bigg|}
+
+\DeclareMathOperator{\poly}{poly}
+\DeclareMathOperator{\polylog}{polylog}
+\DeclareMathOperator{\size}{size}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\vol}{vol}
+\DeclareMathOperator{\spn}{span}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\codim}{codim}
+\DeclareMathOperator{\diag}{diag}
+
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\OPT}{OPT}
+\DeclareMathOperator{\DFT}{DFT}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\nul}{nul}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\erf}{erf}
+\DeclareMathOperator{\err}{err}
+\newcommand{\eps}{\varepsilon}
+
+\DeclareMathOperator{\adj}{adj}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Char}{char}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\image}{image}
+\DeclareMathOperator{\im}{im}
+\newcommand{\Frob}{\mathrm{Frob}}
+
+\newcommand{\bolds}[1]{{\bfseries #1}}
+\newcommand{\cat}[1]{\mathsf{#1}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\ph}{\,\cdot\,}
+\newcommand{\term}[1]{\emph{#1}\index{#1}}
+\newcommand{\phantomeq}{\hphantom{{}={}}}
+
+\DeclareMathOperator{\PoA}{PoA}
+\DeclareMathOperator{\PoS}{PoS}
+\DeclareMathOperator{\Ber}{Ber}
+\DeclareMathOperator{\io}{i.o.}
+\DeclareMathOperator{\ev}{ev}
+\DeclareMathOperator{\U}{U}
+\DeclareMathOperator{\betaD}{beta}
+\DeclareMathOperator{\bias}{bias}
+\DeclareMathOperator{\Bin}{Bin}
+\DeclareMathOperator{\corr}{corr}
+\DeclareMathOperator{\cov}{cov}
+\DeclareMathOperator{\var}{var}
+\DeclareMathOperator{\gammaD}{gamma}
+\DeclareMathOperator{\mse}{mse}
+\DeclareMathOperator{\multinomial}{multinomial}
+\DeclareMathOperator{\Poisson}{Poisson}
+\newcommand{\E}{\mathbf{E}}
+\newcommand{\wto}{\rightharpoonup}
+\newcommand{\dto}{\xrightarrow{\text{d}}}
+\newcommand{\pto}{\xrightarrow{\text{p}}}
+\newcommand{\ato}{\xrightarrow{\text{a.s.}}}
+
+\let\P\relax
+\newcommand{\P}{\mathbf{P}}
+\let\Pr\relax
+\DeclareMathOperator*{\Pr}{\mathbf{Pr}}
+
+\let\Im\relax
+\let\Re\relax
+
+\makeatother

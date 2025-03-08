@@ -1,0 +1,134 @@
+\documentclass{article}
+
+\title{Condensed intuitions for Lebesgue integration}
+\author{Kadin Zhang}
+\date{6/24}
+
+\input{header}
+
+\begin{document}
+\maketitle
+{
+\small
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+}
+
+\section{Motivation}
+Consider the Riemann integral
+\[
+    \int_{0}^{1} \frac{1}{\sqrt{x} } \,dx. 
+\]
+Recall that Riemann integrals are defined where the upper Riemann integral and lower Riemann integral (that is, the infimum over ``overestimates'' and supremum over ``underestimates'' defined by a partitioning of the interval of integration) coincide. But, no matter how we partition $[0, 1]$, the function over the first interval will always have no finite supremum. This contradicts the intuition that we should have 
+\[
+    \int_{0}^{1} \frac{1}{\sqrt{x} } \,dx = \lim_{a \to 0^+ } \int_{a}^{1} \frac{1}{\sqrt{x} } \,dx  = 2.  
+\]
+Consider also integrating the function 
+\[
+    f(x) = \begin{dcases}
+        1, &\text{ if } x \in \Q  ;\\
+        0, &\text{ otherwise} .
+    \end{dcases}
+\]
+over $[0, 1]$. The infimum over any subinterval is $0$, while the supremum is $1$. The overarching problem is that this partitioning method is too restrictive. We would ideally like to define the integral over arbitary disjoint partition of ``nice sets'', where we have a notion of ``measure'' on these sets. Then, for the last example, we could have 
+\[
+    [0, 1] = \braces*{x \in [0, 1] : x \in \Q } \cap  \braces*{x \in [0, 1] : x \notin  \Q },
+\]
+where the left side of the intersection should have measure $0$, making the integral $0$. Now, we just have to define these sets and this measure! 
+
+\section{Constructing a measure}
+Let $X$ be an abstract space, and $m$ be a collection of subsets of $X$. We only ask that a measure satisfy two properties, namely that the measure of the empty set is $0$, and the measure of a countable disjoint union is the sum of the measures of each set in the union. 
+\begin{defi}[Measure]
+    $\mu : (X, m) \to  [0, \infty ]$ is a \emph{measure} if 
+    \begin{enum}
+        \item $\mu (\varnothing ) = 0$
+        \item $\mu \biggl( \bigcup_n E_n  \biggr) = \sum_{n} \mu (E_n)  $ for disjoint  $E_1 , E_2 , \dots \in m$. 
+    \end{enum}
+\end{defi}
+
+Beginning with some space $X$, we will construct this measure by first defining an \emph{outer measure} that operates on the powerset of $X$, then defining the set $m$ which will make countable additivity hold. But first, to even reason about measures, we need to ensure that the collection of subsets that are measured are well behaved:
+\begin{defi}[$\sigma$-algebra]
+    A collection of sets $m$ is said to be a $\sigma$-algebra if 
+    \begin{enum}
+        \item $\varnothing \in m$.  
+        \item $E \in m \implies  X \setminus  E \in M$. 
+        \item $(E_n) \in m \implies \bigcup_n E_n \in m$. 
+    \end{enum}
+\end{defi}
+
+\begin{defi}[Outer measure]
+    Let $\mc{E} \subseteq \mc{P} (X)$ be a family of elementary sets. We require $\varnothing \in \mc{E} $ and $(X_n ) \subset \mc{E} $, where $X = \bigcup_n  X_n $. We also define a function $\rho  : \mc{E} \to [0, \infty ]$ with $\rho (\varnothing ) = 0$. Then define the outer measure as:
+\[
+    \mu^*(E) = \inf \left\{ \sum_{n} \rho (E_n ) : E_n \in \mc{E} , E \subseteq \bigcup_n E_n  \right\} . 
+\]
+\end{defi}
+
+Essentially we are approximating any subset $E\subseteq X $ through countably many elementary ``outer'' sets for which a measure is easy to define. In particular, we construct the \emph{Lebesgue outer measure} on $\R^n $ by choosing $\mc{E} $ to be the set of rectangles. 
+
+Finally, we will take the collection of subsets $m$ to be the set of \emph{$\mu ^* $-measurable sets}: 
+\begin{defi}[$\mu^* $-measurable]
+    A set $E\subseteq X$ is said to be $\mu^* $\emph{-measurable} if for all $F\subseteq X$,
+    \[
+        \mu^* (F) = \mu^* (F\cap E) + \mu^* (F\setminus E). 
+    \]
+    We call this set $m^* $. Intuitively, $E$ splits sets $F$ ``cleanly'' into $F \cap E$ and $F \setminus  E$. 
+\end{defi}
+That $\mu ^* $ restricted to $m^* $ is a measure and $m^* $ is a \emph{$\sigma $-algebra} is a result of Caratheodory's theorem. 
+
+\section{Integration}
+Having defined measures and measurable sets, now we can reason about measure spaces $(X, m, \mu )$ and functions between these spaces. Measurable functions are mappings between measurable spaces that respect the $\sigma$-algebras. These are the functions we will integrate over, since we can show that measurable functions are the increasing limit of simple functions. 
+\begin{defi}[Measurable functions]
+    Let $X, Y$ be nonempty sets, $m, n$ $\sigma$-algebras on $X, Y$ respectively. Then, $f : X\to Y$ is said to be \emph{measurable} if for all $F \in n$,
+    \[
+        f^{-1} (F) \in m. 
+    \]
+    If $Y = \R^N $, $n$ is assumed to be $\mc{B} (\R^N )$. If further $X = \R^d $, we classify measurable functions into two categories (where the latter is assumed when not supplied): 
+    \begin{enum}
+        \item \emph{Lebesgue measurable}: $B \in \mc{B} (\R^N )$ implies $f^{-1} (B) \in m^*$. 
+        \item \emph{Borel measurable}: $B \in \mc{B} (\R^N )$ implies $f^{-1} (B) \in \mc{B} (\R^d )$.  
+    \end{enum}
+\end{defi}
+
+Now we can define the Lebesgue integral. As we wanted, this now considers arbitrary partitions of the domain $X$ into measurable sets. 
+\begin{defi}[Lower Lebesgue sum]
+    Let $P = \{ A_1 , \dots, A_m  \} $ be a partition of $X$ with $A_i \in m$. The \emph{lower Lebesgue sum} with respect to $P$ is defined by 
+   \[
+       L(f, P) \coloneqq \sum_{i}^m  \mu (A_i ) \inf _{A_i } f.  
+   \]
+\end{defi}
+
+\begin{defi}[Lebesgue integral]
+   \[
+       \int_X f d \mu \coloneqq \sup_P L(f, P)  . 
+   \]
+\end{defi}
+
+Now, we reap the rewards of the Lebesgue integral:  
+\begin{thm}[Monotone Convergence Theorem]
+    Let $(X, m, \mu )$ and consider a sequence of measurable functions 
+    \[
+        0\leq  f_1  \leq  \dots \leq  f_n  \to f
+    \]
+    for some $f : X\to [0, \infty ]$. Then, 
+    \[
+        \int _X f d \mu = \lim_{k \to \infty} \int _X  f_k d \mu . 
+    \]
+\end{thm}
+
+\begin{thm}[Fatou's Lemma]
+    Let $(X,m,\mu)$ and $f_n : X\to [0,\infty ]$ measurable.
+    \[
+        \int \liminf_n f_n d\mu \leq \liminf_n \int f_n  d\mu . 
+    \]
+\end{thm}
+
+\begin{thm}[Dominated convergence theorem]
+    Let $(X,m,\mu)$, $f_n \to \overline{\R} $ measurable functions with limit $f$ $\mu$ a.e. Assume there exists an integrable function $g : X \to [0,\infty]$ such that $| f_n (x) |\leq g(x) $ $\mu $ a.e. Then $f$ is Lebesgue integrable and 
+    \[
+        \int _X f_n d\mu \to \int _X f d\mu. 
+    \]
+\end{thm}
+
+
+
+\end{document}

@@ -1,0 +1,95 @@
+\documentclass{article}
+
+\title{Multivariate CLT proof with characteristic functions}
+\author{Kadin Zhang}
+\date{21-721, Spring 2024}
+
+\input{header}
+
+\begin{document}
+\maketitle
+{
+\small
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+}
+% \tableofcontents
+
+\section{Preliminaries}
+\begin{defi}[Characteristic function]
+    Let $X$ be a random variable, then its \emph{characteristic function} is 
+    \[
+        \phi _X (t) = \E \exp (itX). 
+    \]
+    If $X$ is random vector in $\R^n $, define
+    \[
+        \phi _X (t) = \E \exp (it^{\top} X). 
+    \]
+\end{defi}
+\begin{prop}[Characteristic function for Gaussian]
+    The characteristic function of a random vector $X \sim N(\mu , M)$ is 
+    \[
+        \phi _X (t) = \exp (it^{\top} \mu - t^{\top} M t/2). 
+    \]
+\end{prop}
+
+\begin{prop}[Uniqueness]
+    Let $\mu \in \R^n $ and $\Sigma $ a positive semi-definite matrix. There is unique Gaussian distribution with mean $\mu $ and covariance $\Sigma $. Further, if $\det \Sigma >0$ then the distribution has well defined density 
+    \[
+        p(t) = \frac{1}{(2\pi )^{n/2} \det \Sigma ^{1/2} }\exp \parens*{-\frac{1}{2}(t-\mu )^{\top} \Sigma^{-1} (t-\mu ) } . 
+    \]
+\end{prop}
+
+\begin{thm}[Levy continuity theorem]
+    Let $X_n $ have associated characteristic functions $\phi _n $. 
+    \begin{enum}
+        \item Suppose $X_n $ converges in distribution to some RV $X$. Then $\phi _n \to \phi_X$ pointwise. 
+        \item Suppose $\phi _n $ converges pointwise to a function $\phi$ which is continuous at $0$. Then $\phi $ is characteristic function of some RV $X$ and $X_n \dto X$. 
+    \end{enum}
+\end{thm}
+
+\section{Central limit theorem}
+
+\begin{thm}[Multivariate CLT]
+    Let $X_n$ be sequence of i.i.d. random vectors in $\R^n $ with mean $\mu $ and covariance $\Sigma $. Then the sequence of random vectors 
+    \[
+        \frac{X_1 +\dots  + X_m - m \mu}{\sqrt{m}} 
+    \]
+    converges to a centered multivariate normal with covariance $\Sigma $. 
+\end{thm}
+\begin{proof}
+    We prove the theorem for $\mu  = 0$, $\Sigma = I$, as the general result holds by linear transformation. First consider the one dimensional case. Let $Z_m = \frac{X_1 +\dots +X_m }{\sqrt{m} }$. Then, using first the product rule then Taylor's theorem around $0$, 
+    \begin{align*}
+        \phi _{Z_m } (t) &=  \phi _{X} (t/\sqrt{m} )^m \\
+        &= \parens*{1 + \frac{t}{\sqrt{m} }\phi_X '(0) + \frac{t^2 }{2m}\phi''_X (0) + o(1/m)}^m  \\
+        &= \parens*{1 - \frac{t^2 }{2m} + o(1/m)}^m \tag{$\phi _X $ gives moments}\\
+        &\to \exp (-t^2 /2) . 
+    \end{align*}
+    It follows that $\phi_{Z_m }(t)$ converges pointwise to the characteristic function of a standard Gaussian. Thus $Z_m $ converges in distribution to $Z$, where $Z \sim N(0, 1)$. 
+
+    In the general case, fix $t \in \R^n $ and define $Y_m = t^{\top} X_m $. So $Y_m $ are i.i.d. random variables with mean $0$ and variance 
+    \[
+        \E (t^{\top} X )^2  = t^{\top} \E (X t^{\top} X ) = t^{\top} \E (X X ^{\top} t) = t^{\top} t. 
+    \]
+    Apply the one dimensional CLT to $Y_m $ to get 
+    \[
+        \frac{Y_1 + \dots + Y_m }{\sqrt{m} } \dto Z,
+    \]
+    where $Z \sim N(0, t^{\top} t)$. Then, by Levy continuity theorem, for $s \in \R $, letting $W_m = \frac{Y_1 +\dots +Y_m }{\sqrt{m} }$,
+    \[
+        \phi _{W_m }(s) = \phi _{Y_m }(s/\sqrt{m} )^m \to \phi _Z (s). 
+    \]
+    Note that 
+    \begin{align*}
+        \phi_{X_m }(t) = \exp (it^{\top} X_m) = \exp (iY_m ) = \phi_{Y_m }(1).  
+    \end{align*}
+    Therefore, setting $s = 1$, and letting $Z_m = \frac{X_1 +\dots +X_m }{\sqrt{m} }$, 
+    \[
+        \phi _{Z_m }(t) = \phi _{X_m }(t/\sqrt{m} )^m \to \exp (-t^{\top} t/2). 
+    \]
+    So again using Levy continuity theorem, $Z_m \dto Z$, where $Z \sim N(0, I)$. 
+
+\end{proof}
+
+
+\end{document}

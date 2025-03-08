@@ -1,0 +1,1597 @@
+priority 2000
+
+snippet `(b|p)mat([1-9]{1})\ ([1-9]{1})` "matrix" iwAm
+\begin{``rv = m[1]``matrix}``
+	let order = 1;
+	let nrow = m[2];
+	let ncol = m[3];
+	rv = `\n`;
+	for (var i=0; i<nrow; i++){
+		rv += '	';
+		for(var j = 0;j <ncol-1;j++){
+			rv += `$${order} & `;
+			order ++;
+		}
+		rv += ` $${order} \\\\`+ `\\`+ `\n`;
+		order ++;
+	}
+	``\end{``rv = m[1]``matrix}$0
+endsnippet
+
+# my s
+snippet lp "linear program" bA
+\begin{gather*}
+    ${1:\min}\quad $2 \\\
+    \begin{aligned}
+        \text{s.t.}\quad $3 \\\
+    \end{aligned}
+\end{gather*}$0
+endsnippet 
+
+
+snippet bul "bullet" iA m
+\bullet $0
+endsnippet
+
+
+snippet mf "\mc{F}" iA m
+\mc{F}
+endsnippet
+
+
+snippet .. "dots" iAm
+\dots 
+endsnippet 
+
+
+snippet pp "^plus" iAm
+^+ $0
+endsnippet
+
+snippet mm "^minus" iAm
+^- $0
+endsnippet
+
+
+snippet qf "square" iAm
+^2 $0
+endsnippet
+
+
+snippet qd "cube" iAm
+^3 $0
+endsnippet
+
+
+snippet `cuf([a-zA-Z])([a-zA-Z])` "finite union" wAm
+\bigcup_{``rv = m[1]``=1}^``rv = m[2]`` 
+endsnippet
+
+
+snippet `caf([a-zA-Z])([a-zA-Z])` "finite intersect" wAm
+\bigcap_{``rv = m[1]``=1}^``rv = m[2]`` 
+endsnippet
+
+
+snippet `suf([a-zA-Z])([a-zA-Z])` "finite sum" wAm
+\sum_{``rv = m[1]``=1}^``rv = m[2]`` 
+endsnippet
+
+priority 200
+
+snippet `(?<!\\)(sin|cos|cot|cov|csc|ln|log|exp|gcd|perp|inf|sup|tr|diag|rank|vol|det|dim|diam|ker|Im|Re|err|spn|dom|arg|Aut|min|max|sgn|OPT|land|lor)` "general" wAm
+\\``rv = m[1]`` $0
+endsnippet
+
+
+snippet `ubrace` "underbrace" Am
+\underbrace{ $1 }_{ $2 } $0
+endsnippet
+
+
+snippet `res` "restricted to" iAm
+|_
+endsnippet
+
+
+snippet `in ` "in" Am
+\in $0
+endsnippet
+
+
+snippet `\\([a-zA-Z]) ` "R" Am
+\``rv = m[1].toUpperCase()`` $0
+endsnippet
+
+
+snippet `\\([rnq])([a-zA-Z\d]) ` "R^_" Am
+\``rv = m[1].toUpperCase()``^``rv = m[2]`` $0
+endsnippet
+
+
+snippet `\]([a-zA-Z]) ` "mathcal" Am
+\mc{``rv = m[1].toUpperCase()``} $0
+endsnippet
+
+snippet `\]([a-zA-Z])([a-zA-Z\d]) ` "mathcal^_" Am
+\mc{``rv = m[1].toUpperCase()``}^``rv = m[2]`` $0
+endsnippet
+
+
+snippet cd "cdots" Am
+\cdot $0
+endsnippet 
+
+
+snippet ox "otimes" Am
+\otimes $0
+endsnippet 
+
+
+snippet pdots "plus dots plus" iAm
++\dots+ $0
+endsnippet 
+
+
+snippet uu "subscript" iAm
+_{$1} $0
+endsnippet
+
+
+snippet yy "supscript" iAm
+^{$1} $0
+endsnippet
+
+
+snippet nt "_0" iAm
+_0 
+endsnippet
+
+
+snippet `\.([A-Za-z\d])` "auto subscript" iAm
+_``rv = m[1]`` $0
+endsnippet
+
+
+snippet `,([A-Za-z\d])` "auto supscript" iAm
+^``rv = m[1]`` $0
+endsnippet
+
+priority 500
+
+snippet `,,([A-Za-z\d])` "auto supscript" iAm
+^{(``rv = m[1]``)} $0
+endsnippet
+
+snippet rmk "remark" bA
+\begin{remark}
+	$0
+\end{remark}
+endsnippet
+
+snippet cmt "comments" bA
+\begin{comments}
+	$0
+\end{comments}
+endsnippet
+
+
+snippet a= "align" iAm
+&= 
+endsnippet
+
+priority 200
+
+snippet aleq "alignleq" iAm
+&\leq 
+endsnippet
+
+priority 200
+
+snippet ageq "aligngeq" iAm
+&\geq 
+endsnippet
+
+
+snippet align "align" bA
+\begin{align*}
+	$0
+\end{align*}
+endsnippet
+
+snippet dfn "definition" bA
+\begin{defi}[$1]
+	$0
+\end{defi}
+endsnippet
+
+snippet thm "theorem" bA
+\begin{thm}[$1]
+	$0
+\end{thm}
+endsnippet
+
+snippet prp "proposition" bA
+\begin{prop}[$1]
+	$0
+\end{prop}
+endsnippet
+
+snippet exx "example" bA
+\begin{ex}[$1]
+	$0
+\end{ex}
+endsnippet
+
+snippet prb "problem" bA
+\begin{statement}{$1}
+	$0
+\end{statement}
+endsnippet
+
+snippet prob "problem" bA
+\begin{prob}[$1]
+	$0
+\end{prob}
+endsnippet
+
+snippet prf "problem" bA
+\begin{proof}
+	$0
+\end{proof}
+endsnippet
+
+snippet enm "enumerate" bA
+\begin{enum}
+	\item $1
+\end{enum}$0
+endsnippet
+
+# linalg
+
+snippet svd "svd" iAm
+U\Sigma V^\top $1
+endsnippet
+
+snippet smx "max singular value" iAm
+s_{\max}($1) $0
+endsnippet
+
+
+snippet smn "min singular value" iAm
+s_{\min}($1) $0
+endsnippet
+
+
+snippet lmx "max eigen value" iAm
+\lambda_{\max}($1) $0
+endsnippet
+
+
+snippet lmn "min eigen value" iAm
+\lambda_{\min}($1) $0
+endsnippet
+
+# probability
+
+snippet l1 "l1 regression" iAm
+\norm*{$1}_{1} $0
+endsnippet
+
+snippet p1 "subexponential" iAm
+\norm*{$1}_{\psi_1} $0
+endsnippet
+
+
+snippet p2 "subgaussian" iAm
+\norm*{$1}_{\psi_2} $0
+endsnippet
+
+snippet nf "frobenius" iAm
+\norm*{$1}_{F} $0
+endsnippet
+
+
+snippet amom "moment" iAm
+\E|$1|$0
+endsnippet
+
+
+snippet var "Variance" iAm
+\var $0
+endsnippet
+
+
+snippet cov "Variance" iAm
+\cov $0
+endsnippet
+
+priority 200
+
+snippet smean "sample mean" iAm
+\frac{1}{n} \sum_{i=1}^n ${1:X}_i $0
+endsnippet
+
+
+snippet pb "Probability" iAm
+\P$0
+endsnippet
+
+
+snippet cet "Conditional expectation" iAm
+\E(${1:X} \mid \mc{F}$2) $0
+endsnippet
+
+
+snippet pspace "probability space" iAm
+(\Omega, \Sigma, \P) $0
+endsnippet
+
+
+snippet 01space "probability space" iAm
+((0,1), \mc{B}, \mc{L}) $0
+endsnippet
+
+
+snippet sigalg "sig algebra" iAm
+$\sigma$-algebra
+endsnippet
+
+
+snippet bspace "borel measure space" iAm
+(\R, \mc{B})
+endsnippet
+
+snippet bnspace "borel measure space" iAm
+(\R^n, \mc{B}_{\R^n})
+endsnippet
+
+
+snippet `leb` "lebesgue" Am
+\mc{L} $0
+endsnippet
+
+
+
+snippet `pow` "power set" Am
+\mc{P}($1) $0
+endsnippet
+
+# i'm an integral man 
+
+priority 200
+
+snippet `(?<!\\)int` "integral without anything" Am
+\int $0
+endsnippet
+
+priority 300
+
+snippet dint "integral" iAm
+\int_{${1:-\infty}}^{${2:\infty}} ${3} \\,d${4:x} $0
+endsnippet
+
+priority 200
+
+snippet `lint` "lebesgue integral" Am
+\int $2 d\mu $0
+endsnippet
+
+priority 400
+
+snippet rint "integral" iAm
+\int_\R ${3} \\,d${4:x} $0
+endsnippet
+
+priority 300
+
+snippet rpint "integral" iAm
+\int_0^\infty ${3} \\,d${4:x} $0
+endsnippet
+
+priority 300
+
+snippet oint "integral" iAm
+\int_\Omega ${3} \\,d\!\P${4:(\omega)} $0
+endsnippet
+
+priority 300
+
+snippet iint "iterated integral" Am
+\iint $2 \\,d\mu(x) d\nu(y) $0
+endsnippet
+
+
+# fancy environments i didn't write
+
+snippet `table([1-9]{1})\ ([1-9]{1})` "Table environment" bA
+\begin{table}[H]
+	\centering
+	\begin{tabular}{``
+	let len = m[2];
+	let results = "";
+	for(var i=0; i<len-1; i++){
+		results += "c|"
+	}
+	results += "c";
+	rv = results;
+	``}
+	    \toprule
+			``
+			let order = 1;
+			nrow = m[1];
+			ncol = m[2];
+			for (var i=0; i<nrow-1; i++){
+				for(var j = 0;j <ncol-1;j++){
+					rv += `${snip.tabstop(order+3)} & `;
+					order ++;
+				}	
+				rv += ` ${snip.tabstop(order+3)} \\\\`+ `\\`+ `\n`;
+				order ++;
+				if(i == 0){
+					rv += `		\\midrule` + `\n`;
+				}
+				rv += `			`;
+			}	
+			for(var j = 0;j <ncol-1;j++){
+				rv += `${snip.tabstop(order+3)} & `;
+				order ++;
+			}
+			rv += ` ${snip.tabstop(order+3)} \\\\` + `\\`;
+			``
+    	\bottomrule
+	\end{tabular}
+	\caption{${2:caption}}
+	\label{tab:${3:label}}
+\end{table}
+endsnippet
+
+
+snippet `ary([1-9]{1})\ ([1-9]{1})` "Array environment" ibAm
+\begin{array}{``
+	let len = m[2];
+	let results = "";
+	for(var i=0; i<len; i++){
+		results += "c"
+	}
+	rv = results;
+	``}
+	``
+	let order = 1;
+	let nrow = m[1];
+	let ncol = m[2];
+	for (var i=0; i<nrow-1; i++){
+		for(var j = 0;j <ncol-1;j++){
+			rv += `${snip.tabstop(order)} & `;
+			order ++;
+		}
+		rv += ` ${snip.tabstop(order)} \\\\`+ `\\`+ `\n` + `	`;
+		order ++;
+	}
+	for(var j = 0;j <ncol-1;j++){
+		rv += `${snip.tabstop(order)} & `;
+		order ++;
+	}
+	rv += ` ${snip.tabstop(order)} \\\\`+ `\\`;
+	``
+\end{array}
+endsnippet
+
+
+
+
+snippet `(?<![\\a-zA-Z])opn` "operator" Am
+\mathop{\mathrm{$1}}($2) $0
+endsnippet
+
+
+snippet `(?<![\\a-zA-Z])opl` "operator" Am
+\mathop{\mathrm{$1}}\nolimits_{$2}($3) $0
+endsnippet
+
+snippet wp "with probability" wAm
+w.p.\ $0
+endsnippet
+
+
+snippet `(;m|mu)` "\mu" iAm
+\mu $0
+endsnippet
+
+
+snippet `(?<![\\a-zA-Z])(;a|alpha)` "\alpha" Am
+\alpha $0
+endsnippet
+
+
+snippet `(;s|sigma)` "\sigma" iAm
+\sigma $0
+endsnippet
+
+
+snippet `(;S|Sigma)` "\Sigma" iAm
+\Sigma $0
+endsnippet
+
+
+snippet `(?<![\\a-zA-Z])(;r|rho)` "\rho" Am
+\rho $0
+endsnippet
+
+
+snippet `(?<![\\a-zA-Z])(eta)` "\eta" Am
+\eta $0
+endsnippet
+
+
+snippet `(;b|beta)` "\beta" iAm
+\beta $0
+endsnippet
+
+snippet `(?<![\\a-zA-Z])(;hb)` "betahat" iAm
+\hat{\beta} $0
+endsnippet
+
+snippet `(?<![\\a-zA-Z])(;ht)` "theta hat" iAm
+\hat{\theta} $0
+endsnippet
+
+snippet `;vb` "\bm{\beta}" Am
+\bm{\beta} $0
+endsnippet
+
+
+snippet `(?<![\\a-zA-Z])(;g|gamma)` "\gamma" Am
+\gamma $0
+endsnippet
+
+snippet `(?<![\\a-zA-Z])(;G|Gamma)` "\Gamma" Am
+\Gamma $0
+endsnippet
+
+
+snippet `(?<![\\a-zA-Z])(;d|delta)` "\delta" Am
+\delta $0
+endsnippet
+
+snippet `(?<![\\a-zA-Z])(;D|Delta)` "\Delta" Am
+\Delta $0
+endsnippet
+
+
+snippet `(?<![\\a-zA-Z])(;z|zeta)` "\zeta" Am
+\zeta $0
+endsnippet
+
+
+snippet `(?<![\\a-zA-Z])(;e)` "\epsilon" Am
+\eps $0
+endsnippet
+
+
+snippet `(?<![\\a-zA-Z])(;t|theta)` "\theta" Am
+\theta $0
+endsnippet
+
+snippet `(?<![\\a-zA-Z])(;vt|vartheta)` "\vartheta" Am
+\vartheta $0
+endsnippet
+
+
+snippet `(?<![\\a-zA-Z])(;T|Theta)` "\Theta" Am
+\Theta $0
+endsnippet
+
+priority 200
+
+snippet `(?<![\\a-zA-Z])(;;t|tau)` "\tau" Am
+\tau $0
+endsnippet
+
+
+snippet `(?<![\\a-zA-Z])(;i|iota)` "\iota" Am
+\iota $0
+endsnippet
+
+
+snippet `(?<![\\a-zA-Z])(;k|kappa)` "\kappa" Am
+\kappa $0
+endsnippet
+
+
+snippet `(;l|lambda)` "\lambda" iAm
+\lambda $0
+endsnippet
+
+snippet `(?<![\\a-zA-Z])(;L|Lambda)` "\Lambda" Am
+\Lambda $0
+endsnippet
+
+
+snippet `(;n|nu)` "\nu" iAm
+\nu $0
+endsnippet
+
+priority 200
+
+snippet `(?<![\\a-zA-Z])(;;n|nabla|nb)` "\nabla" iAm
+\nabla $0
+endsnippet
+
+
+snippet pi "\pi" iAm
+\pi $0
+endsnippet
+
+snippet `(?<![\\a-zA-Z])(;P|Pi)` "\Pi" Am
+\Pi $0
+endsnippet
+
+
+snippet `(?<![\\a-zA-Z])(;r|rho)` "\rho" Am
+\rho $0
+endsnippet
+
+
+snippet `(?<![\\a-zA-Z])(;t|tau)` "\tau" Am
+\tau $0
+endsnippet
+
+
+snippet `(?<![\\a-zA-Z])(;u|upsilon)` "\upsilon" Am
+\upsilon $0
+endsnippet
+
+snippet `(?<![\\a-zA-Z])(;U|Upsilon)` "\Upsilon" Am
+\Upsilon $0
+endsnippet
+
+priority 200
+
+snippet `(?<![\\a-zA-Z])(;p|phi)` "\phi" Am
+\phi $0
+endsnippet
+priority 200
+
+snippet `(?<![\\a-zA-Z])(;;P|Phi)` "\Phi" Am
+\Phi $0
+endsnippet
+
+
+snippet `(?<![\\a-zA-Z])(;vp|varphi)` "\varphi" Am
+\varphi $0
+endsnippet
+
+
+snippet `(;c|chi)` "\chi" iAm
+\mathbbm{1}_{\{$1\\}} $0
+endsnippet
+
+priority 300
+
+snippet `(?<![\\a-zA-Z])(;;;p|psi)` "\psi" Am
+\psi $0
+endsnippet
+priority 300
+
+snippet `(?<![\\a-zA-Z])(;;;P|Psi)` "\Psi" Am
+\Psi $0
+endsnippet
+
+
+snippet `(?<![\\a-zA-Z])(;o|omega)` "\omega" Am
+\omega
+endsnippet
+
+snippet `(?<![\\a-zA-Z])(;O|Omega)` "\Omega" Am
+\Omega $0
+endsnippet
+
+
+snippet `(?<![\\a-zA-Z])(xi|;x)` "\xi" Am
+\xi $0
+endsnippet
+
+snippet `(?<![\\a-zA-Z])(;X)` "\Xi" Am
+\Xi $0
+endsnippet
+
+priority 200
+
+snippet veps "\vepsilon" iAm
+\varepsilon $0
+endsnippet
+
+priority 100
+
+snippet `(?<![\\a-zA-Z])el` "\ell" Am
+\ell $0
+endsnippet
+
+
+snippet // "Fraction" iAm
+\\frac{$1}{$2}$0
+endsnippet
+
+# 
+# snippet `((\d+)|(\d*)(\\)?([A-Za-z]+)((\^|_)(\{\d+\}|\d))*)/` "Fraction no ()" Am
+# \frac{``rv = m[1]``}{$1}$0
+# endsnippet
+
+# snippet `^.*\)/` "Fraction with ()" Am
+# ``
+#     let str = m[0];
+#     str = str.slice(0, -1);
+#     let lastIndex = str.length - 1;
+
+#     let depth = 0;
+#     let i = str.length - 1;
+
+#     while (true) {
+#         if (str[i] == ')') depth += 1;
+#         if (str[i] == '(') depth -= 1;
+#         if (depth == 0) break;
+#         i -= 1;
+#     }
+
+#     let results = str.slice(0, i) + "\\frac{" + str.slice(i+1, -1) + "}";
+#     rv = results;
+# 	rv += `{${snip.tabstop(1)}}${snip.tabstop(0)}`;
+#     ``
+# endsnippet
+
+
+snippet geq "greater or equal to" iAm
+\geq $0
+endsnippet
+
+
+snippet leq "less or equal to" iAm
+\leq $0
+endsnippet
+
+
+snippet `(?<!\\)neq` "not equal" Am
+\neq $0
+endsnippet
+
+
+snippet `\|=|(?<!\\)mdl` "models" Am
+\models $0
+endsnippet
+
+
+snippet `\|-|(?<!\\)vdh` "models" Am
+\vdash $0
+endsnippet
+
+priority 200
+
+snippet suc "succeeds" iAm
+\succ $0
+endsnippet
+
+
+snippet seq "succeeds or equal to" iAm
+\succeq $0
+endsnippet
+
+
+snippet prec "precedes" iAm
+\prec $0
+endsnippet
+
+
+snippet peq "precedes or equal to" iAm
+\preceq $0
+endsnippet
+
+
+snippet `==` "congruence modulo n" iAm
+\equiv $1 \;(\bmod\;$2) $0
+endsnippet
+
+
+snippet != "constan equal" iAm
+\not\equiv$0
+endsnippet
+
+
+snippet ~~ "approx equal" iAm
+\thickapprox $0
+endsnippet
+
+snippet epp "ep>0" iA
+$\varepsilon>0$
+endsnippet
+
+
+snippet `(~=|cong)` "approx equal(2)" iAm
+\cong $0
+endsnippet
+
+
+snippet ~- "approx equal(3)" iAm
+\simeq $0
+endsnippet
+
+
+snippet `(?<!\\)cir` "composition" Am
+\circ $0
+endsnippet
+
+
+snippet @> "inclusion" iAm
+\hookrightarrow $0
+endsnippet
+
+
+snippet mid "mid" iAm
+\mid $0
+endsnippet
+
+
+snippet `(b|B)(ar)` "bar" Am
+\overline{$1} $0
+endsnippet
+
+priority 200
+
+snippet `(\\?[a-zA-Z]\w*|\\[^(^\s]+\})(b|B)(ar)` "bar" Am
+\overline{``rv = m[1]``} $0
+endsnippet
+
+
+snippet `(t|T)(d)` "tilde" Am
+\tilde{$1} $0
+endsnippet
+
+priority 200
+
+snippet `(\\?[a-zA-Z]\w*|\\[^(^\s]+\})(t|T)(d)` "tilde" Am
+\tilde{``rv = m[1]``} $0
+endsnippet
+
+
+snippet `(\\?[a-zA-Z]\w*|\\[^(^\s]+\})(h|H)(t)` "hat" Am
+\hat{``rv = m[1]``} $0
+endsnippet
+
+priority 200
+
+snippet `(\\?[a-zA-Z]\w*|\\[^(^\s]+\})(b|B)(f)` "mathbf" Am
+\mathbf{``rv = m[1]``} $0
+endsnippet
+
+
+snippet `bf` "bold" Am
+\mathbf{$1} $0
+endsnippet
+
+
+snippet `(\\?[a-zA-Z]\w*|\\[^(^\s]+\})(b|B)(m)` "bm" Am
+\bm{``rv = m[1]``} $0
+endsnippet
+
+
+snippet `(\\?[a-zA-Z]\w*|\\[^(^\s]+\})(,\.|\.,)` "Vector postfix" Am
+\vec{``rv = m[1]``} $0
+endsnippet
+
+
+snippet 1..n "sequence" iAm
+$1_1, \dots, $1_n $0
+endsnippet
+
+
+snippet => "implies" iAm
+\implies $0
+endsnippet
+
+
+snippet =< "implied by" iAm
+\impliedby $0
+endsnippet
+
+priority 200
+
+snippet `(?<!\\)iff` "if and only if" Am
+\iff $0
+endsnippet
+
+# paired things 
+
+
+snippet <> "<>" iAm
+\angles*{$1} $0
+endsnippet
+
+
+snippet {} "{}" iAm
+\braces*{$1} $0
+endsnippet
+
+
+snippet () "()" iAm
+\parens*{$1} $0
+endsnippet
+
+
+snippet bigp "fixed size ()" iAm
+\bigp{$1} $0
+endsnippet
+
+
+snippet bigc "fixed size {}" iAm
+\bigc{$1} $0
+endsnippet
+
+
+snippet ceil "ceil" iAm
+\ceil*{$1} $0
+endsnippet
+
+
+snippet flr "floor" iAm
+\floor*{$1} $0
+endsnippet
+
+
+snippet abs "abs value" iAm
+\abs*{$1} $0
+endsnippet
+
+priority 200
+snippet fabs "abs value" iAm
+\abs[\Big]{$1} $0
+endsnippet
+
+(\abs[\Big]{
+
+priority 200
+
+snippet norm "norm" iAm
+\norm*{$1}$0
+endsnippet
+
+# sets and things
+
+
+snippet `(?<!\\)sum` "sum" Am
+\sum $0
+endsnippet
+
+
+snippet Sum "sum" wAm
+\sum_{${1:i}=${2:1}}^{${3:\infty}} $0
+endsnippet
+
+priority 100
+
+snippet `(?<!\\)scup` "disjoint union" wAm
+\bigsqcup $0
+endsnippet
+
+
+snippet `(?<!\\)cup` "union" wAm
+\cup $0
+endsnippet
+
+
+snippet Cup "Union" wAm
+\bigcup
+endsnippet
+
+
+snippet `(?<!\\)cap` "intersection" Am
+\cap $0
+endsnippet
+
+
+snippet Cap "Intersection" wAm
+\bigcap
+endsnippet
+
+
+snippet `(?<!\\)sub ` "subset" Am
+\subset $0
+endsnippet
+
+
+snippet `(?<!\\)nsub` "nsubseteq" Am
+\nsubseteq $0
+endsnippet
+
+
+snippet sube "subseteq" iAm
+\subset $0
+endsnippet
+
+
+snippet subn "subsetneq" iAm
+\subsetneq $0
+endsnippet
+
+
+snippet `\\sups` "supset" Am
+\supset $0
+endsnippet
+
+priority 300
+
+snippet `(?<!\\)nsup` "nsupseteq" Am
+\nsupseteq $0
+endsnippet
+
+
+snippet `\\supe` "supseteq" Am
+\supseteq $0
+endsnippet
+
+
+snippet `\\supn` "supsetneq" Am
+\supsetneq $0
+endsnippet
+
+priority 300
+
+snippet `(?<!\\)nlim` "nolimit" Am
+\nolimits
+endsnippet
+
+priority 200
+
+snippet `(?<!\\)lim` "limit" Am
+\lim_{n\to\infty} 
+endsnippet
+
+priority 300
+
+snippet `(?<!\\)clim` "custom limit" Am
+\lim_{${1:k} \to ${2:\infty}} 
+endsnippet
+
+priority 300
+
+snippet lsup "limsup" iAm
+\limsup $0 
+endsnippet
+
+priority 300
+
+snippet linf "liminf" iAm
+\liminf $0
+endsnippet
+
+
+snippet prd "product" iAm
+\prod_{${1:i}} $0
+endsnippet
+
+
+snippet Prd "product" iAm
+\prod_{${1:n}=${2:1}}^{${3:\infty}} $0
+endsnippet
+
+priority 100
+
+snippet coprd "coproduct" iAm
+\coprod_{${1:n}=${2:1}}^{${3:\infty}} $0
+endsnippet
+
+priority 100
+
+snippet pdif "d/dx" iAm
+\frac{\partial ${1:V}}{\partial ${2:x}} $0
+endsnippet
+
+
+snippet dif "d/dx" iAm
+\frac{\mathrm{d}${1:y}}{\mathrm{d}${2:x}} $0
+endsnippet
+
+
+snippet `(?<!\\)sq` "\sqrt{}" Am
+\sqrt{${1}} $0
+endsnippet
+
+priority 200
+
+snippet `s(\d)q` "\sqrt{}" Am
+\sqrt[``rv = m[1]``]{${1}} $0
+endsnippet
+
+priority 200
+
+snippet oo "\infty" iAm
+\infty 
+endsnippet
+
+priority 300
+
+snippet `\^oo` "supscript ^\infty" Am
+^{\infty} $0
+endsnippet
+
+priority 200
+
+snippet EE "exist" iAm
+\exists 
+endsnippet
+
+priority 200
+
+snippet AA "forall" iAm
+\forall 
+endsnippet
+
+
+snippet `\b([a-zA-Z])([a-zA-Z])(\d)` "?[?+?]" iAm
+``rv = m[1]``_{``rv = m[2]``+``rv = m[3]``$1}$0
+endsnippet
+
+
+snippet `o\+` "oplus" Am
+\oplus $0
+endsnippet
+
+
+snippet half "half-open interval" iAm
+(-\infty, $1] $0
+endsnippet
+
+
+snippet xx "times" iAm
+\times $0
+endsnippet
+
+
+# snippet XX "bigtimes" iAm
+# \bigtimes $0
+# endsnippet
+
+
+snippet split "split" iAm
+\begin{split}
+	$1
+\end{split}$0
+endsnippet
+
+
+snippet `case ` "cases" Am
+\begin{dcases}
+	$1, &\text{ if } $2 ;\\\\
+	$3, &\text{ otherwise} .
+\end{dcases}$0
+endsnippet
+
+
+snippet `case3 ` "cases" Am
+\begin{dcases}
+	$1, &\text{ if } $2 ;\\\\
+	$3, &\text{ if } $4 ;\\\\
+	$5, &\text{ otherwise} .
+\end{dcases}$0
+endsnippet
+
+
+snippet tet "text" iAm
+\text{$1} $0
+endsnippet
+
+snippet tit "text it" wA
+\textit{$1} $0
+endsnippet
+
+
+snippet nin iAm
+\notin $0
+endsnippet
+
+
+snippet inv "inverse" iAm
+^{-1} $0
+endsnippet
+
+
+snippet `(?<!\\)tp` "transpose" Am
+^{\top} $0
+endsnippet
+
+# 
+# snippet prp "perp" iAm
+# ^{\perp} $0
+# endsnippet
+
+# 
+# snippet cp "complement" iAm
+# ^{c} $0
+# endsnippet
+
+
+snippet `->|(?<!\\)wto` "to" Am
+\wto $0
+endsnippet
+
+
+snippet `->|(?<!\\)dto` "to" Am
+\dto $0
+endsnippet
+
+
+snippet `->|(?<!\\)pto` "to" Am
+\pto $0
+endsnippet
+
+
+snippet `->|(?<!\\)ato` "to" Am
+\ato $0
+endsnippet
+
+
+snippet `->|(?<!\\)to` "to" Am
+\to $0
+endsnippet
+
+
+snippet `<-|(?<!\\)gets` "gets" Am
+\gets $0
+endsnippet
+
+# priority 100
+# 
+# snippet `<=>` "to" Am
+# \leftrightarrow $0
+# endsnippet
+
+priority 100
+
+snippet oarr "over arrow" Am
+\xrightarrow{$1} $0
+endsnippet
+
+
+snippet darr "down arrow" Am
+\downarrow
+endsnippet
+
+
+snippet uarr "up arrow" Am
+\uparrow $0
+endsnippet
+
+
+snippet !> "mapsto" iAm
+\mapsto $0
+endsnippet
+
+
+snippet `(?<!\\)not` "lnot" Am
+\lnot $0
+endsnippet
+
+priority 300
+
+snippet `(?<!\\)a(sin|cos|tan|cot|csc|sec)` "arc-triangle" wAm
+\\arc``rv = m[1]`` $0
+endsnippet
+
+priority 300
+
+snippet `a(max|min)` "arg min/max" wAm
+\arg``rv = m[1]``_{$1} $0
+endsnippet
+
+priority 200
+
+snippet `\\prime\}\ \'` "prime" iAm
+\prime\prime} $0
+endsnippet
+
+
+snippet -- "setminus" iAm
+\setminus $0
+endsnippet
+
+
+snippet st "star" iAm
+^* $0
+endsnippet
+
+
+snippet _* "asterisk" iAm
+_{\ast} $0
+endsnippet
+
+
+snippet ** "asterisk" iAm
+\ast $0
+endsnippet
+
+
+snippet >> ">>" iAm
+\gg $0
+endsnippet
+
+
+snippet << "<<" iAm
+\ll $0
+endsnippet
+
+
+snippet ind "indicator function" iAm
+\mathbbm{1}_{$1}$0
+endsnippet
+
+
+snippet prp "Proportional to" A m
+\propto $0
+endsnippet 
+
+priority 200
+
+snippet `(?<!\\)sim` "sim" Am
+\sim $0
+endsnippet
+
+
+snippet apx "approx" iAm
+\approx $0
+endsnippet
+
+
+snippet `(?<!\\)bino` "binomial coefficient" Am
+\binom{$1}{$2}$0
+endsnippet
+
+
+snippet ems "empty set" iAm
+\varnothing $0
+endsnippet
+
+priority 200
+
+snippet ern "extended reals" Am
+\overline{\R} $0
+endsnippet
+
+
+# snippet l1 "L1(X)" iAm
+# L_1( ${1:\R^N} ) $0
+# endsnippet
+
+
+snippet rr "R" Am
+\R $0
+endsnippet
+
+
+snippet := "definition in math" iAm
+\coloneqq $0
+endsnippet
+
+
+snippet =: "definition in math" iAm
+\eqqcolon $0
+endsnippet
+
+
+# high level latex 
+
+snippet fm "inline Math" wA
+$${1}$``
+let test = t[1][0];
+if (test != ',' &&  test != '.' &&  test != '-' && test !='?' && test !=' '){
+	rv = '';
+}
+else{
+	rv = '';
+}``$2
+endsnippet
+
+snippet dm "display Math" bA
+\[
+	${1}
+\]$0
+endsnippet
+
+snippet fig "Figure environment" b
+\begin{figure}[${1:H}]
+	\centering
+	\includegraphics[width=0.8\textwidth]{$2}
+	\caption{$3}
+	\label{fig:$4}
+\end{figure}
+endsnippet
+
+snippet imgg "Image" bA
+\begin{center}
+  \includegraphics[width=${2:0.6}\textwidth]{$1}
+\end{center} $0
+endsnippet
+
+snippet tcl "textcolor" A
+\textcolor{${2:purple}}{$1}$0
+endsnippet
+
+snippet emph "emph" iA
+\emph{$1}$0
+endsnippet
+
+snippet begg "begin custom env" iA
+\begin{${1:eg}}
+	$0
+\end{${1:eg}}
+endsnippet
+
+
+# class specific
+
+# measure theory
+# 
+# snippet `smu` "\mu^*" Am
+# \mu^* $0
+# endsnippet
+# 
+# snippet `mae` "mu almost everywhere" Am
+# $\mu$ a.e.
+# endsnippet
+# 
+# snippet `xmu` "measure space" Am
+# (X,m,\mu)
+# endsnippet
+# 
+# snippet `haus` "hausdorff" Am
+# \mc{H}
+# endsnippet
+# 
+# snippet `borel` "borel" Am
+# \mc{B}(\R^N)
+# endsnippet
+# 
+# snippet `Gd ` "g delta" iAm
+# G_\delta $0
+# endsnippet
+# snippet `Fs ` "f sigma" iA
+# F_\sigma $0
+# endsnippet
+
+# algebra
+# 
+# snippet cgrp "cyclic group order n" iAm
+# \mathbb{Z}/${1:n}\mathbb{Z} $0
+# endsnippet
+
+# 
+# snippet cpgrp "cyclic product group order n" iAm
+# (\mathbb{Z}/${1:n}\mathbb{Z})^* $0
+# endsnippet
+
+
+# i have never used in my life
+
+# 
+# snippet rm "mathrm" iAm
+# \mathrm{$1} $0
+# endsnippet
+
+# priority 200
+# 
+# snippet `([a-zA-Z])sc` "mathscr" Am
+# \mathscr{``rv = m[1].toUpperCase()``}$0
+# endsnippet
+
+# priority 200
+# 
+# snippet idd "identity" iAm
+# \identity_{$1} $0
+# endsnippet
+
+# 
+# snippet quo "\quotient" iAm
+# \quotient{$1}{$2} $0
+# endsnippet
+
+# 
+# snippet `\|\_` "\at" Am
+# \at{$1}{$2}{$3} $0
+# endsnippet
+
+# snippet atf "\autoref{}" wA
+# \autoref{$1} $0
+# endsnippet
+
+# snippet hpr "\hyperref[]{}" wA
+# \hyperref[$1]{$2} $0
+# endsnippet
+
+# snippet lbl "\label{}" iA
+# \label{$1}
+# endsnippet
+
+# 
+# snippet vph "same level of underbrace" iAm
+# \vphantom{$1} $0
+# endsnippet
+
+# 
+# snippet hom "homorphism" iAwm
+# \Homomorphism $0
+# endsnippet
+
+# 
+# snippet <_ "normal group" iAwm
+# \unlhd $0
+# endsnippet
+
+# 
+# snippet Obj "object" iAm
+# \Object $0
+# endsnippet
+
+# 
+# snippet mor "morphism" iAm
+# \Morphism $0
+# endsnippet
+
+# 
+# snippet __ "\underset{}{}" iAm
+# \underset{$1}{$2} $0
+# endsnippet
+
+# 
+# snippet ^^ "\overset{}{}" iAm
+# \overset{$1}{$2} $0
+# endsnippet
+
+# 
+# snippet Conj "conjunction" wAm
+# \bigwedge_{${1:i}=${2:1}}^{${3:\infty}} $0
+# endsnippet
+
+# 
+# snippet Disj "disjunction" wAm
+# \bigvee_{${1:i}=${2:1}}^{${3:\infty}} $0
+# endsnippet
+
+# 
+# snippet tg "\triangle" iAm
+# \triangle $0
+# endsnippet
+
+# snippet `(?<!\\)qed` "\qed" iA
+# \qed
+# endsnippet
+
+snippet opmn "Optimization problem" bA
+\[
+	\begin{aligned}
+		\min_{$1}~ & ${2}  \\\\
+        \text{s.t.}~ & ${3}  \\\\
+        	& ${4}
+	\end{aligned}
+\]
+$0
+endsnippet
+
+snippet opmx "Optimization problem" bA
+\[
+	\begin{aligned}
+		\max_{$1}~ & ${2}  \\\\
+		\text{s.t.}~ & ${3}  \\\\
+        	& ${4}
+	\end{aligned}
+\]
+$0
+endsnippet
+
+snippet opPD "Optimization problem with primal & dual" bA
+\[
+	\begin{alignedat}{5}
+		\min~&c^{\top}x\qquad\qquad&&\max ~&&y^{\top}b\\\\
+		&Ax = b 				&&		&&y^{\top}A\leq c^{\top}\\\\
+		\quad	&x\geq  0 	&&\quad&&
+	\end{alignedat}.
+\]$0
+endsnippet
+
